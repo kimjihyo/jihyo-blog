@@ -13,6 +13,9 @@ const useStyles = makeStyles({
       padding: '1em 0',
       fontFamily: 'Roboto',
     },
+    '& .draftJsToolbar__wrapper__9NZgg': {
+      marginTop: '-15.5em',
+    },
   },
   breadcrumbs: {
     marginBottom: '1em',
@@ -21,10 +24,15 @@ const useStyles = makeStyles({
     marginBottom: '.5em',
   },
   titleEditor: {
-    fontSize: '20px',
+    fontSize: '28px',
+    fontWeight: 'bold',
   },
   bodyEditor: {
     minHeight: '10em',
+    marginBottom: '2em',
+  },
+  deleteButton: {
+    marginLeft: '1em',
   },
 });
 

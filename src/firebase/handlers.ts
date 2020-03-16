@@ -14,13 +14,17 @@ const getStories = (onSuccess: (stories: StoryEntry[]) => void) => {
       const stories: StoryEntry[] = [];
       snapshot.forEach((document) => {
         const data = document.data();
-        stories.push({
-          id: document.id,
-          title: data.title,
-          body: data.body,
-          created: data.created,
-          category: data.category,
-        });
+        if (data.hidden === undefined || !data.hidden) {
+          const date = new Date(0);
+          date.setUTCSeconds(data.created.seconds);
+          stories.push({
+            id: document.id,
+            title: data.title,
+            body: data.body,
+            created: date,
+            category: data.category,
+          });
+        }
       });
       onSuccess(stories);
     });
@@ -122,6 +126,7 @@ const addStory = (story: StoryEntry, onSuccess?: (storyId: string) => void) => {
           title: story.title,
           body: storyBodyID,
           created: story.created,
+          category: story.category,
           isLocked,
         })
         .then((r) => {
@@ -221,6 +226,21 @@ const executeItToAllStories = () => {
     });
 };
 
+const hideStory = (storyID: string, onSuccess?: () => void) => {
+  const store = firebaseApp.firestore();
+  store
+    .collection('stories')
+    .doc(storyID)
+    .update({
+      hidden: true,
+    })
+    .then(() => {
+      if (onSuccess) {
+        onSuccess();
+      }
+    });
+};
+
 export {
   getStories,
   getStoryIds,
@@ -230,4 +250,5 @@ export {
   addComment,
   editStory,
   executeItToAllStories,
+  hideStory,
 };

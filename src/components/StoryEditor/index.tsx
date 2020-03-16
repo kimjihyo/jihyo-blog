@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import {
   Editor,
@@ -6,10 +8,12 @@ import {
   ContentState,
   convertFromRaw,
 } from 'draft-js';
+import PluginEditor from 'draft-js-plugins-editor';
+import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
+import 'draft-js-side-toolbar-plugin/lib/plugin.css';
 import {
   Breadcrumbs,
   Link,
-  Typography,
   Button,
   Box,
   CircularProgress,
@@ -17,7 +21,12 @@ import {
 import { createBrowserHistory } from 'history';
 import { useLocation } from 'react-router-dom';
 import useStyles from './style';
-import { addStory, getStory, editStory } from '../../firebase/handlers';
+import {
+  addStory,
+  getStory,
+  editStory,
+  hideStory,
+} from '../../firebase/handlers';
 
 type StoryEditorProps = {
   editorType: string;
@@ -26,6 +35,7 @@ type StoryEditorProps = {
 type StoryDraft = {
   title: string;
   body: string;
+  category?: string;
 };
 
 const useQuery = () => new URLSearchParams(useLocation().search);
@@ -35,12 +45,14 @@ const StoryEditor = ({ editorType }: StoryEditorProps) => {
   const query = useQuery();
   const queryStoryId = query.get('storyId');
   const history = createBrowserHistory({ forceRefresh: true });
-
   const [storyDraft, setStoryDraftState] = React.useState<StoryDraft>({
     title: '',
     body: '',
   });
-
+  const [editorState, setEditorState] = React.useState(
+    EditorState.createEmpty(),
+  );
+  const [editor, setEditor] = React.useState<Editor | null>();
   if (
     editorType === 'edit'
     && queryStoryId
@@ -51,7 +63,13 @@ const StoryEditor = ({ editorType }: StoryEditorProps) => {
       setStoryDraftState({
         title: s.title,
         body: s.body,
+        category: s.category,
       });
+      if (s.category) {
+        setEditorState(
+          EditorState.createWithContent(ContentState.createFromText(s.category)),
+        );
+      }
     });
     return (
       <Box display="flex" justifyContent="center">
@@ -60,14 +78,26 @@ const StoryEditor = ({ editorType }: StoryEditorProps) => {
     );
   }
 
+  const onChange = (_editorState: EditorState) => {
+    setEditorState(_editorState);
+  };
+
+  const onClick = () => {
+    if (editor) {
+      editor.focus();
+    }
+  };
+
   const onSubmit = () => {
     if (storyDraft !== undefined) {
       if (editorType === 'createNew') {
+        const category = editorState.getCurrentContent().getPlainText();
         addStory(
           {
             title: storyDraft.title,
             body: storyDraft.body,
             created: new Date(),
+            category: category !== '' ? category : 'Miscellaneous',
           },
           (storyId) => {
             history.push(`/stories/?storyId=${storyId}`);
@@ -86,6 +116,14 @@ const StoryEditor = ({ editorType }: StoryEditorProps) => {
     );
   };
 
+  const onDeleteButtonClicked = () => {
+    if (queryStoryId) {
+      hideStory(queryStoryId, () => {
+        history.push('/');
+      });
+    }
+  };
+
   return (
     <div className={classes.root}>
       <div className={classes.breadcrumbs}>
@@ -96,7 +134,14 @@ const StoryEditor = ({ editorType }: StoryEditorProps) => {
           <Link color="inherit" href="/getting-started/installation/">
             Core
           </Link>
-          <Typography color="textPrimary">Breadcrumb</Typography>
+          <span onClick={onClick}>
+            <Editor
+              editorState={editorState}
+              onChange={onChange}
+              placeholder="Enter a category"
+              ref={(e) => setEditor(e)}
+            />
+          </span>
         </Breadcrumbs>
       </div>
       <div className={classes.titleEditor}>
@@ -121,6 +166,16 @@ const StoryEditor = ({ editorType }: StoryEditorProps) => {
         <Button variant="outlined" color="primary" onClick={onSubmit}>
           {editorType === 'createNew' ? 'Create Story' : 'Save Changes'}
         </Button>
+        {editorType === 'edit' && (
+          <Button
+            className={classes.deleteButton}
+            variant="outlined"
+            color="secondary"
+            onClick={onDeleteButtonClicked}
+          >
+            Delete Story
+          </Button>
+        )}
       </Box>
     </div>
   );
@@ -139,6 +194,12 @@ const TitleEditor = ({ setTitle, title }: TitleEditorProps) => {
       )
       : EditorState.moveFocusToEnd(EditorState.createEmpty()),
   );
+  const [editor, setEditor] = React.useState<Editor | null>();
+  const onClick = () => {
+    if (editor) {
+      editor.focus();
+    }
+  };
 
   const onChange = (_editorState: EditorState) => {
     setTitle(_editorState.getCurrentContent().getPlainText());
@@ -146,8 +207,9 @@ const TitleEditor = ({ setTitle, title }: TitleEditorProps) => {
   };
 
   return (
-    <div>
+    <div onClick={onClick}>
       <Editor
+        ref={(e) => setEditor(e)}
         editorState={editorState}
         onChange={onChange}
         placeholder="Enter a title ..."
@@ -161,25 +223,38 @@ type BodyEditorProps = {
   body?: string;
 };
 
+const sideToolBarPlugin = createSideToolbarPlugin();
+const { SideToolbar } = sideToolBarPlugin;
+
 const BodyEditor = ({ setBody, body }: BodyEditorProps) => {
   const [editorState, setEditorState] = React.useState(
     body
       ? EditorState.createWithContent(convertFromRaw(JSON.parse(body)))
       : EditorState.createEmpty(),
   );
+  const [editor, setEditor] = React.useState<PluginEditor | null>();
 
   const onChange = (_editorState: EditorState) => {
     setBody(JSON.stringify(convertToRaw(_editorState.getCurrentContent())));
     setEditorState(_editorState);
   };
 
+  const onClick = () => {
+    if (editor) {
+      editor.focus();
+    }
+  };
+
   return (
-    <div>
-      <Editor
+    <div onClick={onClick}>
+      <PluginEditor
+        ref={(e) => setEditor(e)}
+        plugins={[sideToolBarPlugin]}
         editorState={editorState}
         onChange={onChange}
         placeholder="Type your thoughts ..."
       />
+      <SideToolbar />
     </div>
   );
 };

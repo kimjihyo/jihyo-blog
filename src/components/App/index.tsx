@@ -28,6 +28,7 @@ import {
   signOut,
 } from '../../firebase/auth';
 
+
 const tabsIndices: { [key: string]: number } = {
   '/': 0,
   '/about': 1,

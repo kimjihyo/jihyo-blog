@@ -87,17 +87,23 @@ const StoryPage = () => {
           <Typography color="textPrimary">{story.category}</Typography>
         </Breadcrumbs>
         {checkIfRootUser(userInfo) && (
-          <Button
-            variant="outlined"
-            component={RouterLink}
-            to={`/edit?storyId=${storyId}`}
-          >
-            Edit
-          </Button>
+          <>
+            <Button
+              variant="outlined"
+              component={RouterLink}
+              to={`/edit?storyId=${storyId}`}
+            >
+              Edit
+            </Button>
+          </>
         )}
       </div>
       <div className={classes.title}>
-        <Typography variant="h5">{story.title}</Typography>
+        <Typography component="div">
+          <Box fontSize={28} fontWeight="bold">
+            {story.title}
+          </Box>
+        </Typography>
       </div>
       <div className={classes.created}>
         <Typography variant="caption">

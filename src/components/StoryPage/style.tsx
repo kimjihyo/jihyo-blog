@@ -2,6 +2,13 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
+    '& .MuiListItem-gutters': {
+      paddingLeft: 0,
+      paddingRight: 0,
+    },
+    '& .MuiDivider-inset': {
+      marginLeft: 0,
+    },
   },
   topRow: {
     marginBottom: '1em',
@@ -10,7 +17,9 @@ const useStyles = makeStyles({
   breadcrumbs: {
     flexGrow: 1,
   },
-  title: {},
+  title: {
+    marginBottom: '.5em',
+  },
   created: {
     color: 'gray',
   },
