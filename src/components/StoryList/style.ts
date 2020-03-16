@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   root: {
     maxWidth: '35em',
     margin: '0 auto',
@@ -8,7 +8,8 @@ const useStyles = makeStyles((theme) => ({
   title: {},
   category: {
     margin: '0 1em',
-    color: theme.palette.secondary.light,
+    color: 'gray',
+    fontWeight: 'bold',
   },
   created: {
     color: 'gray',
@@ -16,6 +17,6 @@ const useStyles = makeStyles((theme) => ({
   listLabel: {
     marginBottom: '.5em',
   },
-}));
+});
 
 export default useStyles;

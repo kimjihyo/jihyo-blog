@@ -7,7 +7,6 @@ import {
   Tab,
   AppBar,
   Button,
-  Typography,
   Toolbar,
   Container,
 } from '@material-ui/core';
@@ -15,7 +14,6 @@ import { createBrowserHistory } from 'history';
 import HomePage from '../HomePage';
 import AboutPage from '../AboutPage';
 import useStyles from './style';
-import { BLOG_NAME } from '../../blog_configs';
 import Footer from '../Footer';
 import StoryPage from '../StoryPage';
 import StoryEditor from '../StoryEditor';
@@ -28,11 +26,10 @@ import {
   signOut,
 } from '../../firebase/auth';
 
-
 const tabsIndices: { [key: string]: number } = {
   '/': 0,
   '/about': 1,
-  '/create': 1,
+  '/create': 2,
 };
 
 const App: React.FC = () => {
@@ -82,11 +79,8 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar position="static" elevation={0}>
           <Toolbar variant="dense">
-            <Typography className={classes.title} variant="h6">
-              {BLOG_NAME}
-            </Typography>
             <Tabs
               className={classes.tabs}
               value={value}
@@ -94,14 +88,15 @@ const App: React.FC = () => {
               indicatorColor="secondary"
               textColor="inherit"
             >
-              <Tab label="Home" component={Link} to="/" />
-              {/* <Tab label="About me" component={Link} to="/about" /> */}
+              <Tab disableRipple label="Home" component={Link} to="/" />
+              <Tab disableRipple label="About me" component={Link} to="/about" />
               {checkIfRootUser(userInfo) && (
-                <Tab label="Create" component={Link} to="/create" />
+                <Tab disableRipple label="Create" component={Link} to="/create" />
               )}
             </Tabs>
             {checkIfValidUser(userInfo) ? (
               <Button
+                disableRipple
                 className={classes.signInButton}
                 color="inherit"
                 onClick={handleSignOut}
@@ -110,6 +105,7 @@ const App: React.FC = () => {
               </Button>
             ) : (
               <Button
+                disableRipple
                 className={classes.signInButton}
                 color="inherit"
                 onClick={handleSignInDialogOpen}

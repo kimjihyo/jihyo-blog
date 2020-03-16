@@ -50,6 +50,7 @@ const useStyles = makeStyles({
     margin: '0 auto',
   },
   draftJsViewer: {
+    fontSize: '14px',
   },
 });
 
