@@ -4,7 +4,6 @@ import StoryEntry from '../interfaces/StoryEntry';
 import CommentEntry from '../interfaces/CommentEntry';
 
 const getStories = (onSuccess: (stories: StoryEntry[]) => void) => {
-  console.log('getting stories ... ');
   const store = firebaseApp.firestore();
   store
     .collection('stories')
@@ -31,7 +30,6 @@ const getStories = (onSuccess: (stories: StoryEntry[]) => void) => {
 };
 
 const getStoryIds = (onSuccess: (ids: string[]) => void) => {
-  console.log('getting story ids...');
   const store = firebaseApp.firestore();
   store
     .collection('stories')
@@ -51,7 +49,6 @@ const getStory = (
   onSuccess: (story: StoryEntry) => void,
   onFailure?: () => void,
 ) => {
-  console.log('getting story...');
   const store = firebaseApp.firestore();
   store
     .collection('stories')
@@ -90,7 +87,6 @@ const getBodyID = (
   storyID: string,
   onSuccess: (storyBodyID: string) => void,
 ) => {
-  console.log('getting body id...');
   const store = firebaseApp.firestore();
   store
     .collection('stories')
@@ -168,7 +164,6 @@ const getComments = (
   storyId: string,
   onSuccess?: (comments: CommentEntry[]) => void,
 ) => {
-  console.log('getting comments...');
   const store = firebaseApp.firestore();
   store
     .collection('stories')
