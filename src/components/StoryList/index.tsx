@@ -39,7 +39,11 @@ const StoryList = () => {
               textOverflow="ellipsis"
             >
               <Link component={RouterLink} to={`/stories?storyId=${story.id}`}>
-                <Typography className={classes.title} variant="body2">
+                <Typography
+                  color="textPrimary"
+                  className={classes.title}
+                  variant="body2"
+                >
                   {story.title}
                 </Typography>
               </Link>

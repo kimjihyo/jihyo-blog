@@ -84,7 +84,7 @@ const StoryPage = () => {
           <Link color="inherit" href="/getting-started/installation/">
             Stories
           </Link>
-          <Typography color="textPrimary">{story.category}</Typography>
+          <Typography>{story.category}</Typography>
         </Breadcrumbs>
         {checkIfRootUser(userInfo) && (
           <>
