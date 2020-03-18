@@ -10,6 +10,7 @@ import {
 } from 'draft-js';
 import PluginEditor from 'draft-js-plugins-editor';
 import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
+import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import 'draft-js-side-toolbar-plugin/lib/plugin.css';
 import {
   Breadcrumbs,
@@ -224,6 +225,7 @@ type BodyEditorProps = {
 };
 
 const sideToolBarPlugin = createSideToolbarPlugin();
+const linkifyPlugin = createLinkifyPlugin();
 const { SideToolbar } = sideToolBarPlugin;
 
 const BodyEditor = ({ setBody, body }: BodyEditorProps) => {
@@ -249,7 +251,7 @@ const BodyEditor = ({ setBody, body }: BodyEditorProps) => {
     <div onClick={onClick}>
       <PluginEditor
         ref={(e) => setEditor(e)}
-        plugins={[sideToolBarPlugin]}
+        plugins={[sideToolBarPlugin, linkifyPlugin]}
         editorState={editorState}
         onChange={onChange}
         placeholder="Type your thoughts ..."

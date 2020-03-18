@@ -41,9 +41,6 @@ const AboutPage: React.FC = () => {
         </Link>
         <Typography color="textPrimary">About</Typography>
       </Breadcrumbs>
-      <div className={classes.title}>
-        <Typography variant="h6">{story.title}</Typography>
-      </div>
       <DraftJsViewer content={story.body} />
     </div>
   );
