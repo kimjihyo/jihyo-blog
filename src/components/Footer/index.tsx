@@ -13,16 +13,16 @@ const Footer: React.FC = () => {
     <div className={classes.root}>
       <span className={classes.icons}>
         <Typography variant="caption" />
-        <IconButton>
+        <IconButton component="a" href="mailto: kimjihyo0325@gmail.com">
           <EmailIcon />
         </IconButton>
-        <IconButton>
+        <IconButton component="a" href="https://www.facebook.com/profile.php?id=100006776461314">
           <FacebookIcon />
         </IconButton>
-        <IconButton>
+        <IconButton component="a" href="https://www.linkedin.com/in/jihyo-kim-084338156/">
           <LinkedInIcon />
         </IconButton>
-        <IconButton>
+        <IconButton component="a" href="https://github.com/kimjihyo">
           <GithubIcon />
         </IconButton>
       </span>
