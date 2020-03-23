@@ -22,13 +22,13 @@ const StoryList = () => {
   if (stories === undefined) {
     return (
       <Box display="flex" justifyContent="center">
-        <CircularProgress />
+        <CircularProgress color="secondary" />
       </Box>
     );
   }
   return (
     <div className={classes.root}>
-      <Typography variant="h6" className={classes.listLabel}>
+      <Typography variant="h6" color="textPrimary" className={classes.listLabel}>
         Recent stories
       </Typography>
       {stories.map((story) => (

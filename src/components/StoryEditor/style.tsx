@@ -26,10 +26,12 @@ const useStyles = makeStyles({
   titleEditor: {
     fontSize: '28px',
     fontWeight: 'bold',
+    color: 'white',
   },
   bodyEditor: {
     minHeight: '10em',
     marginBottom: '2em',
+    color: 'white',
   },
   deleteButton: {
     marginLeft: '1em',

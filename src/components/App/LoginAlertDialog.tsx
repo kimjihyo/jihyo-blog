@@ -110,7 +110,7 @@ const LoginAlertDialog = ({ open, onClose }: LoginAlertDialogProps) => {
         <DialogActions>
           {isInProgress ? (
             <Box display="flex" justifyContent="center">
-              <CircularProgress />
+              <CircularProgress color="secondary" />
             </Box>
           ) : (
             <div>

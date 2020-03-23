@@ -25,7 +25,7 @@ const AboutPage: React.FC = () => {
   if (story === undefined) {
     return (
       <Box display="flex" justifyContent="center">
-        <CircularProgress />
+        <CircularProgress color="secondary" />
       </Box>
     );
   }

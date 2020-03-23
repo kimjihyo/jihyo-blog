@@ -10,6 +10,7 @@ import store from './store/store';
 
 const theme = createMuiTheme({
   palette: {
+    type: 'dark',
     primary: {
       main: common.black,
     },

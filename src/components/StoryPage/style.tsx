@@ -52,6 +52,7 @@ const useStyles = makeStyles({
   draftJsViewer: {
     fontSize: '14px',
     lineHeight: '1.5',
+    color: 'white',
   },
 });
 
