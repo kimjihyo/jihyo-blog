@@ -32,7 +32,7 @@ const useStyles = makeStyles({
   },
   commentTextField: {
     flexGrow: 1,
-    marginRight: '1em',
+    marginRight: '1em !important',
   },
   comments: {
     marginTop: '1em',
