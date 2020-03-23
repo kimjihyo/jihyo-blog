@@ -6,16 +6,18 @@ import { Link as RouterLink } from 'react-router-dom';
 import useStyles from './style';
 import StoryEntry from '../../interfaces/StoryEntry';
 import { getStories } from '../../firebase/handlers';
+import { useStoreState } from '../../hooks';
+import { checkIfRootUser } from '../../firebase/auth';
 
 const StoryList = () => {
   const classes = useStyles();
   const [stories, setStories] = useState<StoryEntry[]>();
-
+  const userInfo = useStoreState((state) => state.userSession.user);
   React.useEffect(() => {
     getStories((r) => {
       setStories(r);
-    });
-  }, []);
+    }, checkIfRootUser(userInfo));
+  }, [userInfo]);
 
   if (stories === undefined) {
     return (
@@ -40,8 +42,8 @@ const StoryList = () => {
             >
               <Link component={RouterLink} to={`/stories?storyId=${story.id}`}>
                 <Typography
+                  className={story.hidden ? classes.titleForHiddenStory : classes.title}
                   color="textPrimary"
-                  className={classes.title}
                   variant="body2"
                 >
                   {story.title}

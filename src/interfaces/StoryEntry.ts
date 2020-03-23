@@ -5,4 +5,5 @@ export default interface StoryEntry {
   created?: Date;
   isLocked?: boolean;
   category?: string;
+  hidden?: boolean;
 }

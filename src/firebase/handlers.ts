@@ -3,7 +3,10 @@ import 'firebase/firestore';
 import StoryEntry from '../interfaces/StoryEntry';
 import CommentEntry from '../interfaces/CommentEntry';
 
-const getStories = (onSuccess: (stories: StoryEntry[]) => void) => {
+const getStories = (
+  onSuccess: (stories: StoryEntry[]) => void,
+  shouldReturnHidden = false,
+) => {
   const store = firebaseApp.firestore();
   store
     .collection('stories')
@@ -13,7 +16,11 @@ const getStories = (onSuccess: (stories: StoryEntry[]) => void) => {
       const stories: StoryEntry[] = [];
       snapshot.forEach((document) => {
         const data = document.data();
-        if (data.hidden === undefined || !data.hidden) {
+        if (
+          data.hidden === undefined
+          || !data.hidden
+          || (shouldReturnHidden && data.hidden)
+        ) {
           const date = new Date(0);
           date.setUTCSeconds(data.created.seconds);
           stories.push({
@@ -22,6 +29,7 @@ const getStories = (onSuccess: (stories: StoryEntry[]) => void) => {
             body: data.body,
             created: date,
             category: data.category,
+            hidden: data.hidden,
           });
         }
       });

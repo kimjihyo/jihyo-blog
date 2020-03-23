@@ -6,6 +6,9 @@ const useStyles = makeStyles({
     margin: '0 auto',
   },
   title: {},
+  titleForHiddenStory: {
+    textDecoration: 'line-through',
+  },
   category: {
     margin: '0 1em',
     color: 'gray',
