@@ -5,8 +5,6 @@ import {
   Link,
   List,
   ListItem,
-  Avatar,
-  ListItemAvatar,
   ListItemText,
   Divider,
   TextField,
@@ -178,9 +176,13 @@ const CommentSection = ({ storyId }: CommentSectionProps) => {
         >
           <TextField
             className={classes.commentTextField}
+            InputProps={{ classes: { input: classes.commentTextFieldInput } }}
+            InputLabelProps={{
+              shrink: true,
+            }}
             inputRef={register}
             variant="outlined"
-            label="Leave a comment."
+            label="Comment"
             name="body"
             autoComplete="off"
             error={!!errors.body}
@@ -199,16 +201,14 @@ const CommentSection = ({ storyId }: CommentSectionProps) => {
           {comments.map((comment, i) => (
             <div key={comment.id ? comment.id : comment.name}>
               <ListItem alignItems="flex-start">
-                <ListItemAvatar>
-                  <Avatar
-                    alt={comment.name}
-                    src={comment.photoURL ? comment.photoURL : ''}
-                  />
-                </ListItemAvatar>
                 <ListItemText
                   primary={(
                     <>
-                      <Typography variant="body1">{comment.name}</Typography>
+                      <Typography color="textPrimary" component="div">
+                        <Box fontSize={13} fontWeight="bold">
+                          {comment.name}
+                        </Box>
+                      </Typography>
                       <Typography
                         variant="caption"
                         className={classes.commentCreated}
@@ -217,9 +217,11 @@ const CommentSection = ({ storyId }: CommentSectionProps) => {
                       </Typography>
                     </>
                   )}
-                  secondary={
-                    <Typography variant="body2">{comment.body}</Typography>
-                  }
+                  secondary={(
+                    <Typography color="textPrimary" component="div">
+                      <Box fontSize={12}>{comment.body}</Box>
+                    </Typography>
+                  )}
                 />
               </ListItem>
               {comments.length !== i + 1 ? (
