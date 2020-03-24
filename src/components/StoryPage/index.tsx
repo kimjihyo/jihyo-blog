@@ -177,6 +177,7 @@ const CommentSection = ({ storyId }: CommentSectionProps) => {
           className={classes.commentFormContainer}
         >
           <TextField
+            color="secondary"
             className={classes.commentTextField}
             inputRef={register}
             variant="outlined"

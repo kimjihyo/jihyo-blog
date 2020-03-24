@@ -64,11 +64,11 @@ const LoginAlertDialog = ({ open, onClose }: LoginAlertDialogProps) => {
   });
 
   return (
-    <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
+    <Dialog className={classes.dialog} open={open} onClose={onClose} aria-labelledby="form-dialog-title">
       <DialogTitle id="form-dialog-title">Sign In</DialogTitle>
       <form noValidate onSubmit={handleSubmit(onSignInButtonClicked)}>
         <DialogContent>
-          <DialogContentText>
+          <DialogContentText color="textPrimary">
             You can leave comments on stories if you signed in. To sign in to
             the website, please enter your email address and password. You can
             also sign in with your Google account.
@@ -77,13 +77,14 @@ const LoginAlertDialog = ({ open, onClose }: LoginAlertDialogProps) => {
           <Button
             className={classes.googleSignInButton}
             variant="outlined"
-            color="primary"
+            color="secondary"
             fullWidth
             onClick={onSignInWithGoogleAccountButtonClicked}
           >
             Sign In with Google Account
           </Button>
           <TextField
+            color="secondary"
             inputRef={register}
             margin="dense"
             id="email"
@@ -96,6 +97,7 @@ const LoginAlertDialog = ({ open, onClose }: LoginAlertDialogProps) => {
             fullWidth
           />
           <TextField
+            color="secondary"
             inputRef={register}
             margin="dense"
             id="password"
@@ -114,10 +116,10 @@ const LoginAlertDialog = ({ open, onClose }: LoginAlertDialogProps) => {
             </Box>
           ) : (
             <div>
-              <Button type="submit" color="primary">
+              <Button type="submit" color="secondary">
                 Sign in
               </Button>
-              <Button onClick={onClose} color="primary">
+              <Button onClick={onClose} color="secondary">
                 Cancel
               </Button>
             </div>

@@ -25,6 +25,14 @@ const useStyles = makeStyles({
   googleSignInButton: {
     margin: '.5em 0',
   },
+  dialog: {
+    '& .MuiPaper-root': {
+      backgroundColor: 'black !important',
+      borderStyle: 'solid',
+      borderWeight: '1',
+
+    },
+  },
 });
 
 export default useStyles;

@@ -15,8 +15,14 @@ const theme = createMuiTheme({
       main: common.black,
     },
     secondary: {
-      main: red[500],
+      main: '#7CFC00',
     },
+    text: {
+      secondary: '#7CFC00',
+    },
+  },
+  typography: {
+    fontFamily: 'Inconsolata',
   },
 });
 

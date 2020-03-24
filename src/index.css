@@ -5,9 +5,9 @@ body {
 }
 
 a {
-  color: tomato;
+  color: #7CFC00;
 }
 
 .DraftEditor-root {
-  font-family: 'Roboto';
+  font-family: 'Inconsolata', monospace !important;
 }

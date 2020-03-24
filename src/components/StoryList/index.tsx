@@ -28,7 +28,7 @@ const StoryList = () => {
   }
   return (
     <div className={classes.root}>
-      <Typography variant="h6" color="textPrimary" className={classes.listLabel}>
+      <Typography variant="h6" color="textSecondary" className={classes.listLabel}>
         Recent stories
       </Typography>
       {stories.map((story) => (
