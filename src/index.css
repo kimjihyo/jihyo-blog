@@ -3,6 +3,9 @@ body {
   padding: 0;
   background-color: black;
 }
+::selection {
+  background: #7CFC00; /* WebKit/Blink Browsers */
+}
 
 a {
   color: #7CFC00;
