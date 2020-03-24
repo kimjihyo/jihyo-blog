@@ -98,7 +98,7 @@ const StoryPage = () => {
       </div>
       <div className={classes.title}>
         <Typography component="div" color="textPrimary">
-          <Box fontSize={28} fontWeight="bold">
+          <Box fontSize={28} fontWeight="bold" lineHeight={1}>
             {story.title}
           </Box>
         </Typography>
