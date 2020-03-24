@@ -164,7 +164,7 @@ const StoryEditor = ({ editorType }: StoryEditorProps) => {
         />
       </div>
       <Box display="flex" justifyContent="flex-end">
-        <Button variant="outlined" color="primary" onClick={onSubmit}>
+        <Button variant="outlined" color="secondary" onClick={onSubmit}>
           {editorType === 'createNew' ? 'Create Story' : 'Save Changes'}
         </Button>
         {editorType === 'edit' && (

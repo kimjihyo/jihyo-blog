@@ -34,6 +34,9 @@ const useStyles = makeStyles({
     flexGrow: 1,
     marginRight: '1em !important',
   },
+  commentTextFieldInput: {
+    height: 5,
+  },
   comments: {
     marginTop: '1em',
   },
