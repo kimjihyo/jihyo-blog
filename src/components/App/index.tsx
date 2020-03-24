@@ -88,7 +88,7 @@ const App: React.FC = () => {
               indicatorColor="secondary"
               textColor="inherit"
             >
-              <Tab disableRipple label="Home" component={Link} to="/" />
+              <Tab disableRipple label="Jihyo's Blog" component={Link} to="/" />
               <Tab disableRipple label="About me" component={Link} to="/about" />
               {checkIfRootUser(userInfo) && (
                 <Tab disableRipple label="Create" component={Link} to="/create" />

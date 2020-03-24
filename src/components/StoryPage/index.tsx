@@ -65,7 +65,7 @@ const StoryPage = () => {
   if (story === undefined) {
     return (
       <Box display="flex" justifyContent="center">
-        <CircularProgress />
+        <CircularProgress color="secondary" />
       </Box>
     );
   }
@@ -99,14 +99,14 @@ const StoryPage = () => {
         )}
       </div>
       <div className={classes.title}>
-        <Typography component="div">
+        <Typography component="div" color="textPrimary">
           <Box fontSize={28} fontWeight="bold">
             {story.title}
           </Box>
         </Typography>
       </div>
       <div className={classes.created}>
-        <Typography variant="caption">
+        <Typography variant="caption" color="textPrimary">
           {story.created ? story.created.toDateString() : 'N/A'}
         </Typography>
       </div>
@@ -163,7 +163,7 @@ const CommentSection = ({ storyId }: CommentSectionProps) => {
   if (comments === undefined) {
     return (
       <Box display="flex" justifyContent="center">
-        <CircularProgress />
+        <CircularProgress color="secondary" />
       </Box>
     );
   }
@@ -177,6 +177,7 @@ const CommentSection = ({ storyId }: CommentSectionProps) => {
           className={classes.commentFormContainer}
         >
           <TextField
+            color="secondary"
             className={classes.commentTextField}
             inputRef={register}
             variant="outlined"
@@ -185,7 +186,7 @@ const CommentSection = ({ storyId }: CommentSectionProps) => {
             autoComplete="off"
             error={!!errors.body}
           />
-          <Button type="submit" variant="outlined" color="primary">
+          <Button type="submit" variant="outlined" color="secondary">
             Submit
           </Button>
         </form>
@@ -208,7 +209,7 @@ const CommentSection = ({ storyId }: CommentSectionProps) => {
                 <ListItemText
                   primary={(
                     <>
-                      <Typography variant="body1">{comment.name}</Typography>
+                      <Typography variant="body1" color="textPrimary">{comment.name}</Typography>
                       <Typography
                         variant="caption"
                         className={classes.commentCreated}
@@ -218,7 +219,7 @@ const CommentSection = ({ storyId }: CommentSectionProps) => {
                     </>
                   )}
                   secondary={
-                    <Typography variant="body2">{comment.body}</Typography>
+                    <Typography color="textPrimary" variant="body2">{comment.body}</Typography>
                   }
                 />
               </ListItem>

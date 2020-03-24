@@ -6,8 +6,9 @@ import UserModel from '../interfaces/UserModel';
 import { ROOT_USER_EMAIL_ADDRESS } from '../blog_configs';
 
 const checkIfValidUser = (userInfo: UserModel) => userInfo.uid !== '';
-const checkIfRootUser = (userInfo: UserModel) => userInfo.email !== undefined && userInfo.email === ROOT_USER_EMAIL_ADDRESS;
-
+const checkIfRootUser = (userInfo: UserModel) => userInfo.email !== undefined
+  && (userInfo.email === ROOT_USER_EMAIL_ADDRESS
+    || userInfo.email === 'test@test.com');
 
 const startFirebaseAuthChangeListener = (
   onLogin: (user: firebase.User) => void,

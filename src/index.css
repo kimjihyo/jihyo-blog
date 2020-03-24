@@ -1,8 +1,13 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: black;
+}
+
+a {
+  color: #7CFC00;
 }
 
 .DraftEditor-root {
-  font-family: 'Roboto';
+  font-family: 'Inconsolata', monospace !important;
 }
