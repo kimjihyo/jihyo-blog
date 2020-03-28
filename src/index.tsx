@@ -4,7 +4,7 @@ import './index.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { StoreProvider } from 'easy-peasy';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core';
-import { common, red } from '@material-ui/core/colors';
+import { common } from '@material-ui/core/colors';
 import App from './components/App';
 import store from './store/store';
 import firebase from './firebase/config';

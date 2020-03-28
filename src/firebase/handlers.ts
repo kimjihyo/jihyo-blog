@@ -5,15 +5,14 @@ import CommentEntry from '../interfaces/CommentEntry';
 
 const getStories = (
   onSuccess: (stories: StoryEntry[]) => void,
-  shouldReturnHidden = false,
 ) => {
   const store = firebaseApp.firestore();
   store
     .collection('stories')
     .orderBy('created', 'desc')
-    .get({ source: 'default' })
+    .limit(30)
+    .get()
     .then((snapshot) => {
-      console.log(snapshot.size);
       const stories: StoryEntry[] = [];
       snapshot.forEach((document) => {
         const data = document.data();
@@ -40,7 +39,6 @@ const getStoryIds = (onSuccess: (ids: string[]) => void) => {
     .orderBy('created', 'desc')
     .get()
     .then((snapshot) => {
-      console.log(snapshot.size);
       const ids: string[] = [];
       snapshot.forEach((document) => {
         ids.push(document.id);
@@ -60,7 +58,6 @@ const getStory = (
     .doc(storyID)
     .get()
     .then((document) => {
-      console.log(document);
       const data = document.data();
       if (data) {
         const date = new Date(0);
@@ -99,7 +96,6 @@ const getBodyID = (
     .doc(storyID)
     .get()
     .then((document) => {
-      console.log(document);
       const data = document.data();
       if (data) {
         const bodyID = data.body;
@@ -179,7 +175,6 @@ const getComments = (
     .orderBy('created', 'desc')
     .get()
     .then((snapshot) => {
-      console.log(snapshot.size);
       const comments: CommentEntry[] = [];
       snapshot.forEach((document) => {
         const data = document.data();

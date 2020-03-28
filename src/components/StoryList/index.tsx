@@ -13,7 +13,7 @@ const StoryList = () => {
   React.useEffect(() => {
     getStories((r) => {
       setStories(r);
-    }, false);
+    });
   }, []);
 
   if (stories === undefined) {

@@ -25,7 +25,6 @@ import {
   startFirebaseAuthChangeListener,
   signOut,
 } from '../../firebase/auth';
-import { executeItToAllStories } from '../../firebase/handlers';
 
 const tabsIndices: { [key: string]: number } = {
   '/': 0,
@@ -75,7 +74,7 @@ const App: React.FC = () => {
       clearUserSession();
     };
     startFirebaseAuthChangeListener(onSignIn, onSignOut);
-  }, []);
+  }, [setUser, clearUserSession]);
 
   return (
     <div className="App">
