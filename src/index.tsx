@@ -7,6 +7,7 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core';
 import { common, red } from '@material-ui/core/colors';
 import App from './components/App';
 import store from './store/store';
+import firebase from './firebase/config';
 
 const theme = createMuiTheme({
   palette: {
@@ -25,6 +26,8 @@ const theme = createMuiTheme({
     fontFamily: 'Inconsolata',
   },
 });
+
+firebase.firestore().enablePersistence();
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>

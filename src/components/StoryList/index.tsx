@@ -6,18 +6,15 @@ import { Link as RouterLink } from 'react-router-dom';
 import useStyles from './style';
 import StoryEntry from '../../interfaces/StoryEntry';
 import { getStories } from '../../firebase/handlers';
-import { useStoreState } from '../../hooks';
-import { checkIfRootUser } from '../../firebase/auth';
 
 const StoryList = () => {
   const classes = useStyles();
   const [stories, setStories] = useState<StoryEntry[]>();
-  const userInfo = useStoreState((state) => state.userSession.user);
   React.useEffect(() => {
     getStories((r) => {
       setStories(r);
-    }, checkIfRootUser(userInfo));
-  }, [userInfo]);
+    }, false);
+  }, []);
 
   if (stories === undefined) {
     return (
