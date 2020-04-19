@@ -16,12 +16,10 @@ const StoryList = () => {
 
   const fetchStories = React.useCallback(() => {
     if (Object.keys(cache.stories).length === 0) {
-      console.log('getting stories from firebase.');
       getStories((r) => {
         addStoriesToCache(r);
       });
     } else {
-      console.log('getting stories from cache');
       setStories(Object.values(cache.stories));
     }
   }, [addStoriesToCache, cache.stories]);

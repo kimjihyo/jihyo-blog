@@ -67,7 +67,6 @@ const StoryPage = () => {
     } else if (storyId != null && cache.stories[storyId] === undefined) {
       getStory(storyId, (_story) => {
         const tempStory = { ..._story };
-        console.log(tempStory);
         addStoryToCache(_story);
         getBody(_story.body, (body) => {
           addStoryBodyToCache({ id: _story.body, body });
