@@ -17,11 +17,13 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import useStyles from './style';
 import StoryEntry from '../../interfaces/StoryEntry';
-import { getStory, getComments, addComment } from '../../firebase/handlers';
+import {
+  getStory, getComments, addComment, getBody,
+} from '../../firebase/handlers';
 import CommentEntry from '../../interfaces/CommentEntry';
 import DraftJsViewer from './DraftJsViewer';
 import PageNotFound from '../PageNotFound';
-import { useStoreState } from '../../hooks';
+import { useStoreState, useStoreActions } from '../../hooks';
 import { checkIfValidUser, checkIfRootUser } from '../../firebase/auth';
 import LoginAlertDialog from '../App/LoginAlertDialog';
 
@@ -39,6 +41,9 @@ const StoryPage = () => {
   const classes = useStyles();
   const query = useQuery();
   const storyId = query.get('storyId');
+  const cache = useStoreState((state) => state.cache);
+  const addStoryBodyToCache = useStoreActions((state) => state.cache.addStoryBodyToCache);
+  const addStoryToCache = useStoreActions((state) => state.cache.addStoryToCache);
   const userInfo = useStoreState((state) => state.userSession.user);
   const defaultId = '';
 
@@ -46,16 +51,34 @@ const StoryPage = () => {
   const [pageNotFound, setPageNotFound] = useState<boolean>(false);
 
   React.useEffect(() => {
-    getStory(
-      storyId || defaultId,
-      (s) => {
-        setStory(s);
-      },
-      () => {
+    if (storyId != null && cache.stories[storyId] !== undefined) {
+      const tempStory = { ...cache.stories[storyId] };
+      const bodyId = cache.stories[storyId].body;
+      if (cache.storyBodies[bodyId] !== undefined) {
+        tempStory.body = cache.storyBodies[bodyId].body;
+        setStory(tempStory);
+      } else {
+        getBody(bodyId, (body) => {
+          addStoryBodyToCache({ id: bodyId, body });
+          tempStory.body = body;
+          setStory(tempStory);
+        });
+      }
+    } else if (storyId != null && cache.stories[storyId] === undefined) {
+      getStory(storyId, (_story) => {
+        const tempStory = { ..._story };
+        console.log(tempStory);
+        addStoryToCache(_story);
+        getBody(_story.body, (body) => {
+          addStoryBodyToCache({ id: _story.body, body });
+          tempStory.body = body;
+          setStory(tempStory);
+        });
+      }, () => {
         setPageNotFound(true);
-      },
-    );
-  }, [storyId]);
+      });
+    }
+  }, [cache, storyId, addStoryBodyToCache, addStoryToCache]);
 
   if (pageNotFound) {
     return <PageNotFound />;
@@ -105,7 +128,7 @@ const StoryPage = () => {
       </div>
       <div className={classes.created}>
         <Typography variant="caption" color="textPrimary">
-          {story.created ? story.created.toDateString() : 'N/A'}
+          {(new Date(story.created).toDateString())}
         </Typography>
       </div>
       <div className={classes.body}>

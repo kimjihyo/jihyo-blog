@@ -24,10 +24,10 @@ import { useLocation } from 'react-router-dom';
 import useStyles from './style';
 import {
   addStory,
-  getStory,
   editStory,
   hideStory,
 } from '../../firebase/handlers';
+import { useStoreState } from '../../hooks';
 
 type StoryEditorProps = {
   editorType: string;
@@ -37,6 +37,7 @@ type StoryDraft = {
   title: string;
   body: string;
   category?: string;
+  created: number;
 };
 
 const useQuery = () => new URLSearchParams(useLocation().search);
@@ -44,11 +45,13 @@ const useQuery = () => new URLSearchParams(useLocation().search);
 const StoryEditor = ({ editorType }: StoryEditorProps) => {
   const classes = useStyles();
   const query = useQuery();
+  const cache = useStoreState((state) => state.cache);
   const queryStoryId = query.get('storyId');
   const history = createBrowserHistory({ forceRefresh: true });
   const [storyDraft, setStoryDraftState] = React.useState<StoryDraft>({
     title: '',
     body: '',
+    created: Date.now(),
   });
   const [editorState, setEditorState] = React.useState(
     EditorState.createEmpty(),
@@ -60,18 +63,19 @@ const StoryEditor = ({ editorType }: StoryEditorProps) => {
     && storyDraft.title === ''
     && storyDraft.body === ''
   ) {
-    getStory(queryStoryId, (s) => {
-      setStoryDraftState({
-        title: s.title,
-        body: s.body,
-        category: s.category,
-      });
-      if (s.category) {
-        setEditorState(
-          EditorState.createWithContent(ContentState.createFromText(s.category)),
-        );
-      }
+    const story = cache.stories[queryStoryId];
+    const storyBody = cache.storyBodies[story.body].body;
+    setStoryDraftState({
+      title: story.title,
+      body: storyBody,
+      category: story.category,
+      created: story.created,
     });
+    if (story.category) {
+      setEditorState(
+        EditorState.createWithContent(ContentState.createFromText(story.category)),
+      );
+    }
     return (
       <Box display="flex" justifyContent="center">
         <CircularProgress />
@@ -97,7 +101,7 @@ const StoryEditor = ({ editorType }: StoryEditorProps) => {
           {
             title: storyDraft.title,
             body: storyDraft.body,
-            created: new Date(),
+            created: Date.now(),
             category: category !== '' ? category : 'Miscellaneous',
           },
           (storyId) => {

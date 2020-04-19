@@ -16,14 +16,11 @@ const getStories = (
       const stories: StoryEntry[] = [];
       snapshot.forEach((document) => {
         const data = document.data();
-
-        const date = new Date(0);
-        date.setUTCSeconds(data.created.seconds);
         stories.push({
           id: document.id,
           title: data.title,
           body: data.body,
-          created: date,
+          created: data.created,
           category: data.category,
           hidden: data.hidden,
         });
@@ -47,6 +44,22 @@ const getStoryIds = (onSuccess: (ids: string[]) => void) => {
     });
 };
 
+const getBody = (
+  bodyID: string,
+  onSuccess: (body: string) => void,
+) => {
+  const store = firebaseApp.firestore();
+  store.collection('storyBodies')
+    .doc(bodyID)
+    .get()
+    .then((r) => {
+      const data = r.data();
+      if (data !== undefined) {
+        onSuccess(data.body);
+      }
+    });
+};
+
 const getStory = (
   storyID: string,
   onSuccess: (story: StoryEntry) => void,
@@ -60,26 +73,14 @@ const getStory = (
     .then((document) => {
       const data = document.data();
       if (data) {
-        const date = new Date(0);
-        date.setUTCSeconds(data.created.seconds);
-        // Now we need to get a story body
-        store
-          .collection('storyBodies')
-          .doc(data.body)
-          .get()
-          .then((r) => {
-            const bodyData = r.data();
-            if (bodyData) {
-              onSuccess({
-                id: document.id,
-                title: data.title,
-                created: date,
-                isLocked: data.isLocked,
-                body: bodyData.body,
-                category: data.category,
-              });
-            }
-          });
+        onSuccess({
+          id: document.id,
+          title: data.title,
+          created: data.created,
+          isLocked: data.isLocked,
+          body: data.body,
+          category: data.category,
+        });
       } else if (onFailure) {
         onFailure();
       }
@@ -249,4 +250,5 @@ export {
   editStory,
   executeItToAllStories,
   hideStory,
+  getBody,
 };

@@ -40,26 +40,26 @@ const App: React.FC = () => {
     (state) => state.userSession.clearUserSession,
   );
   const setUser = useStoreActions((state) => state.userSession.setUser);
-  const [value, setValue] = React.useState(
+  const [tabIndex, setTabIndex] = React.useState(
     tabsIndices[history.location.pathname] || 0,
   );
   const [dialogOpen, setDialogOpen] = React.useState<boolean>(false);
 
-  const handleChange = (_: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue);
-  };
+  const handleChange = React.useCallback((_: React.ChangeEvent<{}>, newValue: number) => {
+    setTabIndex(newValue);
+  }, [setTabIndex]);
 
-  const handleSignInDialogOpen = () => {
+  const handleSignInDialogOpen = React.useCallback(() => {
     setDialogOpen(true);
-  };
+  }, [setDialogOpen]);
 
-  const handleSignInDialogClose = () => {
+  const handleSignInDialogClose = React.useCallback(() => {
     setDialogOpen(false);
-  };
+  }, [setDialogOpen]);
 
-  const handleSignOut = () => {
+  const handleSignOut = React.useCallback(() => {
     signOut();
-  };
+  }, []);
 
   React.useEffect(() => {
     const onSignIn = (user: firebase.User) => {
@@ -83,7 +83,7 @@ const App: React.FC = () => {
           <Toolbar variant="dense">
             <Tabs
               className={classes.tabs}
-              value={value}
+              value={tabIndex}
               onChange={handleChange}
               indicatorColor="secondary"
               textColor="inherit"

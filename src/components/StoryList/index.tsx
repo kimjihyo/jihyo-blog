@@ -6,15 +6,29 @@ import { Link as RouterLink } from 'react-router-dom';
 import useStyles from './style';
 import StoryEntry from '../../interfaces/StoryEntry';
 import { getStories } from '../../firebase/handlers';
+import { useStoreState, useStoreActions } from '../../hooks';
 
 const StoryList = () => {
   const classes = useStyles();
   const [stories, setStories] = useState<StoryEntry[]>();
+  const cache = useStoreState((state) => state.cache);
+  const addStoriesToCache = useStoreActions((state) => state.cache.addStoriesToCache);
+
+  const fetchStories = React.useCallback(() => {
+    if (Object.keys(cache.stories).length === 0) {
+      console.log('getting stories from firebase.');
+      getStories((r) => {
+        addStoriesToCache(r);
+      });
+    } else {
+      console.log('getting stories from cache');
+      setStories(Object.values(cache.stories));
+    }
+  }, [addStoriesToCache, cache.stories]);
+
   React.useEffect(() => {
-    getStories((r) => {
-      setStories(r);
-    });
-  }, []);
+    fetchStories();
+  }, [fetchStories]);
 
   if (stories === undefined) {
     return (
@@ -51,7 +65,7 @@ const StoryList = () => {
               {story.category ? story.category : 'Miscelleneous'}
             </Typography>
             <Typography variant="caption" className={classes.created}>
-              {story.created?.toDateString()}
+              {(new Date(story.created).toDateString())}
             </Typography>
           </Box>
         </div>

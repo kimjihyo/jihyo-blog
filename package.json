@@ -22,7 +22,7 @@
     "draft-js-plugins-editor": "^3.0.0",
     "draft-js-side-toolbar-plugin": "^3.0.2",
     "easy-peasy": "^3.3.0",
-    "firebase": "^7.10.0",
+    "firebase": "^7.14.1",
     "history": "^4.10.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",

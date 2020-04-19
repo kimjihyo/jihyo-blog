@@ -7,7 +7,7 @@ const PageNotFound = () => {
   return (
     <div className={classes.root}>
       <Box display="flex" justifyContent="center">
-        <Typography variant="h2">
+        <Typography variant="h6" color="textPrimary">
           404 Page Not Found
           {' '}
           <span aria-label="emji" role="img">😢</span>

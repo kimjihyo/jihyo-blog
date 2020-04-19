@@ -31,13 +31,13 @@ const CreateStoryPage = () => {
     validationSchema: StoryEntrySchema,
   });
 
-  const onSubmit = (data: StoryEntry) => {
-    data.created = new Date();
+  const onSubmit = React.useCallback((data: StoryEntry) => {
+    data.created = Date.now();
     addStory(data, (storyId) => {
       reset();
       history.push(`/stories/?storyId=${storyId}`);
     });
-  };
+  }, [addStory]);
 
   return (
     <div className={classes.root}>
