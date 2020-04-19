@@ -27,6 +27,14 @@ import { useStoreState, useStoreActions } from '../../hooks';
 import { checkIfValidUser, checkIfRootUser } from '../../firebase/auth';
 import LoginAlertDialog from '../App/LoginAlertDialog';
 
+type StoryPageProps = {
+  _storyId?: string;
+  hideTitle?: boolean;
+  hideCommentSection?: boolean;
+  hideCreated?: boolean;
+};
+
+
 const CommentEntrySchema = yup.object().shape({
   body: yup
     .string()
@@ -37,10 +45,12 @@ const CommentEntrySchema = yup.object().shape({
 
 const useQuery = () => new URLSearchParams(useLocation().search);
 
-const StoryPage = () => {
+const StoryPage = ({
+  _storyId, hideTitle, hideCommentSection, hideCreated,
+}: StoryPageProps) => {
   const classes = useStyles();
   const query = useQuery();
-  const storyId = query.get('storyId');
+  const storyId = _storyId !== undefined ? _storyId : query.get('storyId');
   const cache = useStoreState((state) => state.cache);
   const addStoryBodyToCache = useStoreActions((state) => state.cache.addStoryBodyToCache);
   const addStoryToCache = useStoreActions((state) => state.cache.addStoryToCache);
@@ -118,6 +128,8 @@ const StoryPage = () => {
           </>
         )}
       </div>
+      {(hideTitle == null || !hideTitle)
+      && (
       <div className={classes.title}>
         <Typography component="div" color="textPrimary">
           <Box fontSize={28} fontWeight="bold" lineHeight={1}>
@@ -125,15 +137,20 @@ const StoryPage = () => {
           </Box>
         </Typography>
       </div>
-      <div className={classes.created}>
-        <Typography variant="caption" color="textPrimary">
-          {(new Date(story.created).toDateString())}
-        </Typography>
-      </div>
+      )}
+      {(hideCreated == null || !hideCreated)
+      && (
+        <div className={classes.created}>
+          <Typography variant="caption" color="textPrimary">
+            {(new Date(story.created).toDateString())}
+          </Typography>
+        </div>
+      )}
       <div className={classes.body}>
         <DraftJsViewer content={story.body} />
       </div>
-      <CommentSection storyId={storyId || defaultId} />
+      {(hideCommentSection == null || !hideCommentSection)
+      && <CommentSection storyId={storyId || defaultId} />}
     </div>
   );
 };

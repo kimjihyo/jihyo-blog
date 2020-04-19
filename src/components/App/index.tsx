@@ -9,6 +9,7 @@ import {
   Button,
   Toolbar,
   Container,
+  Typography,
 } from '@material-ui/core';
 import { createBrowserHistory } from 'history';
 import HomePage from '../HomePage';
@@ -25,10 +26,11 @@ import {
   startFirebaseAuthChangeListener,
   signOut,
 } from '../../firebase/auth';
+import StoryList from '../StoryList';
 
 const tabsIndices: { [key: string]: number } = {
-  '/': 0,
-  '/about': 1,
+  '/about': 0,
+  '/archives': 1,
   '/create': 2,
 };
 
@@ -62,6 +64,7 @@ const App: React.FC = () => {
   }, []);
 
   React.useEffect(() => {
+    console.log(tabsIndices[history.location.pathname]);
     const onSignIn = (user: firebase.User) => {
       setUser({
         uid: user.uid,
@@ -81,6 +84,9 @@ const App: React.FC = () => {
       <div className={classes.root}>
         <AppBar position="static" elevation={0}>
           <Toolbar variant="dense">
+            <Typography className={classes.blogTitle} variant="caption">
+              Jihyo Kim
+            </Typography>
             <Tabs
               className={classes.tabs}
               value={tabIndex}
@@ -88,8 +94,8 @@ const App: React.FC = () => {
               indicatorColor="secondary"
               textColor="inherit"
             >
-              <Tab disableRipple label="Jihyo's terminal" component={Link} to="/" />
               <Tab disableRipple label="About me" component={Link} to="/about" />
+              <Tab disableRipple label="Archives" component={Link} to="/archives" />
               {checkIfRootUser(userInfo) && (
                 <Tab disableRipple label="Create" component={Link} to="/create" />
               )}
@@ -123,14 +129,14 @@ const App: React.FC = () => {
 
       <Container maxWidth="md" className={classes.container}>
         <Switch>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
           <Route exact path="/stories">
             <StoryPage />
           </Route>
           <Route exact path="/about">
             <AboutPage />
+          </Route>
+          <Route exact path="/archives">
+            <StoryList />
           </Route>
           {checkIfRootUser(userInfo) && (
             <Route exact path="/create">
@@ -142,6 +148,9 @@ const App: React.FC = () => {
               <StoryEditor editorType="edit" />
             </Route>
           )}
+          <Route exact path="/">
+            <Redirect to="/about" />
+          </Route>
           <Redirect to="/" />
         </Switch>
       </Container>

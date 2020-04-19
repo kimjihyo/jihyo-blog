@@ -10,6 +10,9 @@ const useStyles = makeStyles({
       paddingRight: '2em',
     },
   },
+  blogTitle: {
+    marginRight: '1em',
+  },
   tabs: {
     flexGrow: 1,
   },
