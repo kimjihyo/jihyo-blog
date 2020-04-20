@@ -12,7 +12,6 @@ import {
   Typography,
 } from '@material-ui/core';
 import { createBrowserHistory } from 'history';
-import HomePage from '../HomePage';
 import AboutPage from '../AboutPage';
 import useStyles from './style';
 import Footer from '../Footer';
@@ -47,9 +46,12 @@ const App: React.FC = () => {
   );
   const [dialogOpen, setDialogOpen] = React.useState<boolean>(false);
 
-  const handleChange = React.useCallback((_: React.ChangeEvent<{}>, newValue: number) => {
-    setTabIndex(newValue);
-  }, [setTabIndex]);
+  const handleChange = React.useCallback(
+    (_: React.ChangeEvent<{}>, newValue: number) => {
+      setTabIndex(newValue);
+    },
+    [setTabIndex],
+  );
 
   const handleSignInDialogOpen = React.useCallback(() => {
     setDialogOpen(true);
@@ -64,7 +66,6 @@ const App: React.FC = () => {
   }, []);
 
   React.useEffect(() => {
-    console.log(tabsIndices[history.location.pathname]);
     const onSignIn = (user: firebase.User) => {
       setUser({
         uid: user.uid,
@@ -82,9 +83,13 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <div className={classes.root}>
-        <AppBar position="static" elevation={0}>
-          <Toolbar variant="dense">
-            <Typography className={classes.blogTitle} variant="caption">
+        <AppBar className={classes.appBar} position="static" elevation={0}>
+          <Toolbar>
+            <Typography
+              className={classes.blogTitle}
+              variant="caption"
+              color="inherit"
+            >
               Jihyo Kim
             </Typography>
             <Tabs
@@ -94,10 +99,25 @@ const App: React.FC = () => {
               indicatorColor="secondary"
               textColor="inherit"
             >
-              <Tab disableRipple label="About me" component={Link} to="/about" />
-              <Tab disableRipple label="Archives" component={Link} to="/archives" />
+              <Tab
+                disableRipple
+                label="About me"
+                component={Link}
+                to="/about"
+              />
+              <Tab
+                disableRipple
+                label="Archives"
+                component={Link}
+                to="/archives"
+              />
               {checkIfRootUser(userInfo) && (
-                <Tab disableRipple label="Create" component={Link} to="/create" />
+                <Tab
+                  disableRipple
+                  label="Create"
+                  component={Link}
+                  to="/create"
+                />
               )}
             </Tabs>
             {checkIfValidUser(userInfo) ? (

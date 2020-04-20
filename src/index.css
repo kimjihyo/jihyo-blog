@@ -1,16 +1,15 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: black;
 }
 ::selection {
-  background: #7CFC00; /* WebKit/Blink Browsers */
+  background: #e53935; /* WebKit/Blink Browsers */
 }
 
 a {
-  color: #7CFC00;
+  color: #e53935;
 }
 
 .DraftEditor-root {
-  font-family: 'Inconsolata', monospace !important;
+  font-family: 'Roboto', monospace !important;
 }

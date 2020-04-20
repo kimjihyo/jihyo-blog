@@ -10,8 +10,12 @@ const useStyles = makeStyles({
       paddingRight: '2em',
     },
   },
+  appBar: {
+    backgroundColor: 'white',
+    color: 'black',
+  },
   blogTitle: {
-    marginRight: '1em',
+    marginRight: '2em',
   },
   tabs: {
     flexGrow: 1,

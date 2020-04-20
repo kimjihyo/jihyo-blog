@@ -2,8 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: 'black',
-    padding: '1em',
+    backgroundColor: 'whitesmoke',
+    padding: '3em',
   },
   icons: {
     display: 'flex',

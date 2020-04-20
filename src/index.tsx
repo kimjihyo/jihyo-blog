@@ -11,20 +11,20 @@ import firebase from './firebase/config';
 
 const theme = createMuiTheme({
   palette: {
-    type: 'dark',
-    primary: {
-      main: common.black,
-    },
-    secondary: {
-      main: '#7CFC00',
-    },
-    text: {
-      secondary: '#7CFC00',
-    },
+    type: 'light',
+    // primary: {
+    //   main: common.black,
+    // },
+    // secondary: {
+    //   main: '#7CFC00',
+    // },
+    // text: {
+    //   secondary: '#7CFC00',
+    // },
   },
-  typography: {
-    fontFamily: 'Inconsolata',
-  },
+  // typography: {
+  //   fontFamily: 'Inconsolata',
+  // },
 });
 
 firebase.firestore().enablePersistence();
