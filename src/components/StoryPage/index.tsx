@@ -132,7 +132,7 @@ const StoryPage = ({
       && (
       <div className={classes.title}>
         <Typography component="div" color="textPrimary">
-          <Box fontSize={28} fontWeight="bold" lineHeight={1}>
+          <Box fontSize={32} fontWeight="bold" lineHeight={1}>
             {story.title}
           </Box>
         </Typography>

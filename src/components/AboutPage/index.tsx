@@ -11,7 +11,7 @@ const AboutPage: React.FC = () => (
     <AboutWebsiteRow />
     <PersonalProjectsRow />
     <WorkExperienceRow /> */}
-    <StoryPage _storyId="5gklozNFuoxjXPpraPpr" hideTitle hideCreated hideCommentSection />
+    <StoryPage _storyId="5gklozNFuoxjXPpraPpr" hideCreated hideCommentSection />
   </div>
 );
 

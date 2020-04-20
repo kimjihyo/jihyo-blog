@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     color: 'gray',
   },
   body: {
-    margin: '1em 0',
+    marginTop: '2em',
     marginBottom: '4em',
   },
   commentFormContainer: {
