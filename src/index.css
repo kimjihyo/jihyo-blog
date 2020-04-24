@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Joseon;
+  src: url("./assets/JoseonFont.ttf")
+}
+
 body {
   margin: 0;
   padding: 0;

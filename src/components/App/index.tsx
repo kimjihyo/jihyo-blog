@@ -83,68 +83,69 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <div className={classes.root}>
+        <div className={classes.line}>{}</div>
         <AppBar className={classes.appBar} position="static" elevation={0}>
           <Toolbar>
             <Typography
               className={classes.blogTitle}
-              variant="caption"
+              variant="h4"
               color="inherit"
             >
-              Jihyo Kim
+              김지효 블로그
             </Typography>
-            <Tabs
-              className={classes.tabs}
-              value={tabIndex}
-              onChange={handleChange}
-              indicatorColor="secondary"
-              textColor="inherit"
-            >
-              <Tab
-                disableRipple
-                label="About me"
-                component={Link}
-                to="/about"
-              />
-              <Tab
-                disableRipple
-                label="Archives"
-                component={Link}
-                to="/archives"
-              />
-              {checkIfRootUser(userInfo) && (
-                <Tab
-                  disableRipple
-                  label="Create"
-                  component={Link}
-                  to="/create"
-                />
-              )}
-            </Tabs>
-            {checkIfValidUser(userInfo) ? (
-              <Button
-                disableRipple
-                className={classes.signInButton}
-                color="inherit"
-                onClick={handleSignOut}
-              >
-                Sign Out
-              </Button>
-            ) : (
-              <Button
-                disableRipple
-                className={classes.signInButton}
-                color="inherit"
-                onClick={handleSignInDialogOpen}
-              >
-                Sign In
-              </Button>
-            )}
             <LoginAlertDialog
               open={dialogOpen}
               onClose={handleSignInDialogClose}
             />
           </Toolbar>
         </AppBar>
+        <Tabs
+          className={classes.tabs}
+          value={tabIndex}
+          onChange={handleChange}
+          indicatorColor="secondary"
+          textColor="inherit"
+        >
+          <Tab
+            disableRipple
+            label="About me"
+            component={Link}
+            to="/about"
+          />
+          <Tab
+            disableRipple
+            label="Archives"
+            component={Link}
+            to="/archives"
+          />
+          {checkIfRootUser(userInfo) && (
+          <Tab
+            disableRipple
+            label="Create"
+            component={Link}
+            to="/create"
+          />
+          )}
+          {checkIfValidUser(userInfo) ? (
+            <Button
+              disableRipple
+              className={classes.signInButton}
+              color="inherit"
+              onClick={handleSignOut}
+            >
+              Sign Out
+            </Button>
+          ) : (
+            <Button
+              disableRipple
+              className={classes.signInButton}
+              color="inherit"
+              onClick={handleSignInDialogOpen}
+            >
+              Sign In
+            </Button>
+          )}
+        </Tabs>
       </div>
 
       <Container maxWidth="md" className={classes.container}>

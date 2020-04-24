@@ -10,21 +10,29 @@ const useStyles = makeStyles({
       paddingRight: '2em',
     },
   },
+  line: {
+    height: 4,
+    backgroundColor: 'black',
+  },
   appBar: {
+    flexGrow: 1,
+    alignItems: 'center',
     backgroundColor: 'white',
     color: 'black',
   },
   blogTitle: {
-    marginRight: '2em',
+    fontFamily: 'Josen',
+    padding: '1em',
   },
   tabs: {
-    flexGrow: 1,
+    margin: '0 1em',
   },
   title: {
     marginRight: '1em',
   },
   signInButton: {
     marginRight: '1em',
+    marginLeft: 'auto',
   },
   container: {
     padding: '2em 1em',
