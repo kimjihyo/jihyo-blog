@@ -10,29 +10,20 @@ const useStyles = makeStyles({
       paddingRight: '2em',
     },
   },
-  line: {
-    height: 4,
-    backgroundColor: 'black',
-  },
   appBar: {
-    flexGrow: 1,
-    alignItems: 'center',
     backgroundColor: 'white',
     color: 'black',
   },
   blogTitle: {
-    fontFamily: 'Josen',
+    marginRight: 'auto',
+    fontFamily: 'Patua One, cursive',
     padding: '1em',
-  },
-  tabs: {
-    margin: '0 1em',
   },
   title: {
     marginRight: '1em',
   },
   signInButton: {
     marginRight: '1em',
-    marginLeft: 'auto',
   },
   container: {
     padding: '2em 1em',
