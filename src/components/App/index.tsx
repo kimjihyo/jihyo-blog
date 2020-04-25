@@ -80,9 +80,9 @@ const App: React.FC = () => {
             <Button disableRipple component={Link} to="/about">
               About
             </Button>
-            <Button disableRipple component={Link} to="/archives">
+            {/* <Button disableRipple component={Link} to="/archives">
               Archives
-            </Button>
+            </Button> */}
             {checkIfRootUser(userInfo) && (
               <Button disableRipple component={Link} to="/create">
                 Create
