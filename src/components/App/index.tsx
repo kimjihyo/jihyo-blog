@@ -8,6 +8,7 @@ import {
   Toolbar,
   Container,
   Typography,
+  useMediaQuery,
 } from '@material-ui/core';
 import AboutPage from '../AboutPage';
 import useStyles from './style';
@@ -27,6 +28,7 @@ import HomePage from '../HomePage';
 
 const App: React.FC = () => {
   const classes = useStyles();
+  const isMobile = useMediaQuery('(min-width:600px)');
   const userInfo = useStoreState((state) => state.userSession.user);
   const clearUserSession = useStoreActions(
     (state) => state.userSession.clearUserSession,
@@ -69,7 +71,7 @@ const App: React.FC = () => {
           <Toolbar>
             <Typography
               className={classes.blogTitle}
-              variant="h5"
+              variant={isMobile ? 'h5' : 'caption'}
               color="inherit"
             >
               Jihyo Kim
@@ -80,9 +82,6 @@ const App: React.FC = () => {
             <Button disableRipple component={Link} to="/about">
               About
             </Button>
-            {/* <Button disableRipple component={Link} to="/archives">
-              Archives
-            </Button> */}
             {checkIfRootUser(userInfo) && (
               <Button disableRipple component={Link} to="/create">
                 Create
