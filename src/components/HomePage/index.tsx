@@ -8,7 +8,8 @@ import useStyles from './style';
 
 const HomePage = () => {
   const classes = useStyles();
-  const isMobile = useMediaQuery('(min-width:600px)');
+  const isNotMobile = useMediaQuery('(min-width:600px)');
+  const isWideScreen = useMediaQuery('(max-width:1100px)');
 
   return (
     <div className={classes.root}>
@@ -16,22 +17,25 @@ const HomePage = () => {
         <div>
           <div className={classes.introText}>
             <Typography>
-              <Box fontWeight="bold" fontSize={isMobile ? 22 : 18} style={{ marginBottom: '.5em' }}>
-                Hi there, I'm Jihyo Kim.
+              <Box fontWeight="bold" fontSize={isNotMobile ? 22 : 18} style={{ marginBottom: '.5em' }}>
+                Hi there, I'm Jihyo.
               </Box>
-              <Box fontSize={isMobile ? 18 : 14}>
+              <Box fontSize={isNotMobile ? 18 : 14}>
                 I'm a student in Computer Systems Technology
                 at British Columbia Institute of Technology.
+                <br />
                 Passionate in web, mobile and game development.
               </Box>
             </Typography>
           </div>
+          {isWideScreen && (
           <div className={classes.introButtons}>
             <Button>Email</Button>
             <Button>LinkedIn</Button>
             <Button>GitHub</Button>
             <Button component={Link} to="/archives">Archives</Button>
           </div>
+          )}
         </div>
       </div>
     </div>

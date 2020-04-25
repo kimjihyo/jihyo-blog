@@ -9,6 +9,7 @@ import {
   Container,
   Typography,
   useMediaQuery,
+  Drawer,
 } from '@material-ui/core';
 import AboutPage from '../AboutPage';
 import useStyles from './style';
@@ -28,14 +29,15 @@ import HomePage from '../HomePage';
 
 const App: React.FC = () => {
   const classes = useStyles();
-  const isMobile = useMediaQuery('(min-width:600px)');
+  const isNotMobile = useMediaQuery('(min-width:600px)');
+  const isWideScreen = useMediaQuery('(min-width:1100px)');
   const userInfo = useStoreState((state) => state.userSession.user);
   const clearUserSession = useStoreActions(
     (state) => state.userSession.clearUserSession,
   );
   const setUser = useStoreActions((state) => state.userSession.setUser);
   const [dialogOpen, setDialogOpen] = React.useState<boolean>(false);
-
+  const [currentPage, setCurrentPage] = React.useState<string>('Home');
 
   const handleSignInDialogOpen = React.useCallback(() => {
     setDialogOpen(true);
@@ -67,54 +69,183 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <div className={classes.root}>
-        <AppBar className={classes.appBar} position="static" elevation={0}>
-          <Toolbar>
-            <Typography
-              className={classes.blogTitle}
-              variant={isMobile ? 'h5' : 'caption'}
-              color="inherit"
+        {isWideScreen ? (
+          <Drawer
+            className={classes.drawer}
+            anchor="left"
+            variant="permanent"
+            classes={{ paper: classes.drawerPaper }}
+          >
+            <div className={classes.blogTitleContainerInDrawer}>
+              <Typography variant="h6" className={classes.blogTitleInDrawer}>
+                Jihyo Kim
+                <br />
+                <span className={classes.jobTitle}>Software Developer</span>
+              </Typography>
+            </div>
+            <Button
+              classes={{
+                root: classes.drawerButton,
+                label:
+                  currentPage === 'Home'
+                    ? classes.selectedButtonLabel
+                    : classes.defaultButtonLabel,
+              }}
+              onClick={() => setCurrentPage('Home')}
+              disableRipple
+              component={Link}
+              to="/"
             >
-              Jihyo Kim
-            </Typography>
-            <Button disableRipple component={Link} to="/">
               Home
             </Button>
-            <Button disableRipple component={Link} to="/about">
+            <Button
+              classes={{
+                root: classes.drawerButton,
+                label:
+                  currentPage === 'About'
+                    ? classes.selectedButtonLabel
+                    : classes.defaultButtonLabel,
+              }}
+              onClick={() => setCurrentPage('About')}
+              disableRipple
+              component={Link}
+              to="/about"
+            >
               About
             </Button>
-            {checkIfRootUser(userInfo) && (
-              <Button disableRipple component={Link} to="/create">
-                Create
-              </Button>
-            )}
-            {checkIfValidUser(userInfo) ? (
-              <Button
-                disableRipple
-                className={classes.signInButton}
+            <Button
+              classes={{
+                root: classes.drawerButton,
+                label:
+                  currentPage === 'Archives'
+                    ? classes.selectedButtonLabel
+                    : classes.defaultButtonLabel,
+              }}
+              onClick={() => setCurrentPage('Archives')}
+              disableRipple
+              component={Link}
+              to="/archives"
+            >
+              Archives
+            </Button>
+            <Button
+              classes={{
+                root: classes.drawerButton,
+                label: classes.defaultButtonLabel,
+              }}
+              disableRipple
+            >
+              Email
+            </Button>
+            <Button
+              classes={{
+                root: classes.drawerButton,
+                label: classes.defaultButtonLabel,
+              }}
+              disableRipple
+            >
+              LinkedIn
+            </Button>
+            <Button
+              classes={{
+                root: classes.drawerButton,
+                label: classes.defaultButtonLabel,
+              }}
+              disableRipple
+            >
+              Github
+            </Button>
+          </Drawer>
+        ) : (
+          <AppBar className={classes.appBar} position="static" elevation={0}>
+            <Toolbar>
+              <Typography
+                className={classes.blogTitle}
+                variant={isNotMobile ? 'h5' : 'caption'}
                 color="inherit"
-                onClick={handleSignOut}
               >
-                Sign Out
-              </Button>
-            ) : (
+                Jihyo Kim
+              </Typography>
               <Button
+                classes={{
+                  root: classes.appBarButton,
+                  label:
+                    currentPage === 'Home'
+                      ? classes.selectedButtonLabel
+                      : classes.defaultButtonLabel,
+                }}
                 disableRipple
-                className={classes.signInButton}
-                color="inherit"
-                onClick={handleSignInDialogOpen}
+                onClick={() => setCurrentPage('Home')}
+                component={Link}
+                to="/"
               >
-                Sign In
+                Home
               </Button>
-            )}
-            <LoginAlertDialog
-              open={dialogOpen}
-              onClose={handleSignInDialogClose}
-            />
-          </Toolbar>
-        </AppBar>
+              <Button
+                classes={{
+                  root: classes.appBarButton,
+                  label:
+                    currentPage === 'About'
+                      ? classes.selectedButtonLabel
+                      : classes.defaultButtonLabel,
+                }}
+                onClick={() => setCurrentPage('About')}
+                disableRipple
+                component={Link}
+                to="/about"
+              >
+                About
+              </Button>
+              {checkIfRootUser(userInfo) && (
+                <Button
+                  classes={{ root: classes.appBarButton }}
+                  disableRipple
+                  component={Link}
+                  to="/create"
+                >
+                  Create
+                </Button>
+              )}
+              {checkIfValidUser(userInfo) ? (
+                <Button
+                  disableRipple
+                  classes={{
+                    root: classes.appBarButton,
+                    label: classes.defaultButtonLabel,
+                  }}
+                  color="inherit"
+                  onClick={handleSignOut}
+                >
+                  Sign Out
+                </Button>
+              ) : (
+                <Button
+                  disableRipple
+                  classes={{
+                    root: classes.appBarButton,
+                    label: classes.defaultButtonLabel,
+                  }}
+                  color="inherit"
+                  onClick={handleSignInDialogOpen}
+                >
+                  Sign In
+                </Button>
+              )}
+              <LoginAlertDialog
+                open={dialogOpen}
+                onClose={handleSignInDialogClose}
+              />
+            </Toolbar>
+          </AppBar>
+        )}
       </div>
 
-      <Container maxWidth="md" className={classes.container}>
+      <Container
+        maxWidth="md"
+        className={
+          isWideScreen ? classes.wideScreenContainer : classes.container
+        }
+      >
         <Switch>
           <Route exact path="/">
             <HomePage />
@@ -140,9 +271,8 @@ const App: React.FC = () => {
           )}
           <Redirect to="/" />
         </Switch>
+        <Footer />
       </Container>
-
-      <Footer />
     </div>
   );
 };

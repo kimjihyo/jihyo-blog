@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'row',
     alignItems: 'center',
     maxWidth: '40em',
-    height: '60vh',
+    height: '55vh',
     paddingLeft: '1em',
   },
   introText: {

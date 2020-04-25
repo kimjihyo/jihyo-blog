@@ -2,12 +2,15 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: 'whitesmoke',
-    padding: '3em',
+    marginTop: '2em',
   },
-  icons: {
-    display: 'flex',
-    justifyContent: 'center',
+  line: {
+    height: 3,
+    backgroundColor: 'black',
+    marginBottom: '1em',
+  },
+  footerText: {
+    textAlign: 'right',
   },
 });
 
