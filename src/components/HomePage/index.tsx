@@ -20,7 +20,7 @@ const HomePage = () => {
               <Box fontWeight="bold" fontSize={isNotMobile ? 22 : 18} style={{ marginBottom: '.5em' }}>
                 Hi there, I'm Jihyo.
               </Box>
-              <Box fontSize={isNotMobile ? 18 : 14}>
+              <Box fontSize={isNotMobile ? 16 : 12}>
                 I'm a student in Computer Systems Technology
                 at British Columbia Institute of Technology.
                 <br />

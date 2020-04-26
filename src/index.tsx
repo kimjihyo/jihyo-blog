@@ -12,6 +12,9 @@ const theme = createMuiTheme({
   palette: {
     type: 'light',
   },
+  typography: {
+    fontFamily: 'Noto Sans KR, sans-serif',
+  },
 });
 
 firebase.firestore().enablePersistence();
