@@ -240,39 +240,40 @@ const App: React.FC = () => {
         )}
       </div>
 
-      <Container
-        maxWidth="md"
+      <div
         className={
           isWideScreen ? classes.wideScreenContainer : classes.container
         }
       >
-        <Switch>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-          <Route exact path="/stories">
-            <StoryPage />
-          </Route>
-          <Route exact path="/about">
-            <AboutPage />
-          </Route>
-          <Route exact path="/archives">
-            <StoryList />
-          </Route>
-          {checkIfRootUser(userInfo) && (
-            <Route exact path="/create">
-              <StoryEditor editorType="createNew" />
+        <Container maxWidth="lg">
+          <Switch>
+            <Route exact path="/">
+              <HomePage />
             </Route>
-          )}
-          {checkIfRootUser(userInfo) && (
-            <Route exact path="/edit">
-              <StoryEditor editorType="edit" />
+            <Route exact path="/stories">
+              <StoryPage />
             </Route>
-          )}
-          <Redirect to="/" />
-        </Switch>
-        <Footer />
-      </Container>
+            <Route exact path="/about">
+              <AboutPage />
+            </Route>
+            <Route exact path="/archives">
+              <StoryList />
+            </Route>
+            {checkIfRootUser(userInfo) && (
+              <Route exact path="/create">
+                <StoryEditor editorType="createNew" />
+              </Route>
+            )}
+            {checkIfRootUser(userInfo) && (
+              <Route exact path="/edit">
+                <StoryEditor editorType="edit" />
+              </Route>
+            )}
+            <Redirect to="/" />
+          </Switch>
+          <Footer />
+        </Container>
+      </div>
     </div>
   );
 };

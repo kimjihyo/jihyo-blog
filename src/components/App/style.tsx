@@ -60,10 +60,10 @@ const useStyles = makeStyles({
     marginRight: '1em',
   },
   container: {
-    padding: '2em 1em',
+    padding: '2em 0em',
   },
   wideScreenContainer: {
-    padding: '2em 1em',
+    padding: '2em 0em',
     width: `calc(100% - ${280}px)`,
     marginLeft: 280,
   },
