@@ -10,8 +10,6 @@ import ProjectItem from './ProjectItem';
 
 import RealtorComLogo from '../../assets/realtorcom_logo.png';
 import BaseLogo from '../../assets/base.jpg';
-import HalloweenGame from '../../assets/halloween_game.png';
-import GomokuScreenshot from '../../assets/gomoku_screenshot.png';
 
 const HomePage = () => {
   const classes = useStyles();
@@ -51,7 +49,7 @@ const HomePage = () => {
           )}
         </div>
       </div>
-      {/* <Section title="Work Experience" />
+      <Section title="Work Experience" />
       <ProjectItem
         name="Realtor.com"
         description="Realtor.com is a real estate listings website operated by the News Corporation subsidiary Move, Inc."
@@ -62,17 +60,6 @@ const HomePage = () => {
         description="Realtor.com is a real estate listings website operated by the News Corporation subsidiary Move, Inc."
         image={BaseLogo}
       />
-      <Section title="Projects" />
-      <ProjectItem
-        name="Google Halloween Game"
-        description="Realtor.com is a real estate listings website operated by the News Corporation subsidiary Move, Inc."
-        image={HalloweenGame}
-      />
-      <ProjectItem
-        name="Gomoku"
-        description="Realtor.com is a real estate listings website operated by the News Corporation subsidiary Move, Inc."
-        image={GomokuScreenshot}
-      /> */}
     </div>
   );
 };
