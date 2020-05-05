@@ -10,6 +10,9 @@ import ProjectItem from './ProjectItem';
 
 import RealtorComLogo from '../../assets/realtorcom_logo.png';
 import BaseLogo from '../../assets/base.jpg';
+import HalloweenGameImage from '../../assets/halloween_game.png';
+import GomokuImage from '../../assets/gomoku_screenshot.png';
+import GratefulEstate from '../../assets/grateful_estate.jpg';
 
 const HomePage = () => {
   const classes = useStyles();
@@ -52,13 +55,44 @@ const HomePage = () => {
       <Section title="Work Experience" />
       <ProjectItem
         name="Realtor.com"
+        link="https://www.realtor.com"
+        sectionName="01"
+        position="Co-op Software Engineer"
         description="Realtor.com is a real estate listings website operated by the News Corporation subsidiary Move, Inc."
         image={RealtorComLogo}
       />
       <ProjectItem
         name="Base BC Students Network"
+        link="https://web.base.town"
+        sectionName="02"
+        position="Full-stack Developer"
         description="Realtor.com is a real estate listings website operated by the News Corporation subsidiary Move, Inc."
         image={BaseLogo}
+      />
+      <Section title="Projects" />
+      <ProjectItem
+        name="Google Halloween Game"
+        link="https://www.realtor.com"
+        sectionName="01"
+        position="Personal Project - Game Development"
+        description="Realtor.com is a real estate listings website operated by the News Corporation subsidiary Move, Inc."
+        image={HalloweenGameImage}
+      />
+      <ProjectItem
+        name="Gomoku"
+        link="https://web.base.town"
+        sectionName="02"
+        position="Personal Project - Game Development"
+        description="Realtor.com is a real estate listings website operated by the News Corporation subsidiary Move, Inc."
+        image={GomokuImage}
+      />
+      <ProjectItem
+        name="Grateful Estate"
+        link="https://www.gratefulestate.com"
+        sectionName="03"
+        position="Company Project - Android App Development"
+        description="Realtor.com is a real estate listings website operated by the News Corporation subsidiary Move, Inc."
+        image={GratefulEstate}
       />
     </div>
   );
