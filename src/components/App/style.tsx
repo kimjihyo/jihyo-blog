@@ -1,5 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
+const drawerSize = 320;
+
 const useStyles = makeStyles({
   root: {
   },
@@ -24,11 +26,11 @@ const useStyles = makeStyles({
     color: 'grey',
   },
   drawer: {
-    width: 280,
+    width: drawerSize,
     backgroundColor: 'whitesmoke',
   },
   drawerPaper: {
-    width: 280,
+    width: drawerSize,
     backgroundColor: 'whitesmoke',
     border: 'none',
   },
@@ -64,8 +66,8 @@ const useStyles = makeStyles({
   },
   wideScreenContainer: {
     padding: '2em 0em',
-    width: `calc(100% - ${280}px)`,
-    marginLeft: 280,
+    width: `calc(100% - ${drawerSize}px)`,
+    marginLeft: drawerSize,
   },
   googleSignInButton: {
     margin: '.5em 0',

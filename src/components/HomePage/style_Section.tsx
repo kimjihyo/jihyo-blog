@@ -8,6 +8,11 @@ const useStyles = makeStyles(() => ({
     fontWeight: 'bold',
     fontSize: '18px',
   },
+  mobileTitle: {
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+    fontSize: '14px',
+  },
   line: {
     height: 3,
     backgroundColor: 'black',

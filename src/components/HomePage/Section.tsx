@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import { Typography, useMediaQuery } from '@material-ui/core';
 import useStyles from './style_Section';
 
 type SectionProps = {
@@ -8,10 +8,11 @@ type SectionProps = {
 
 const Section = ({ title }: SectionProps) => {
   const classes = useStyles();
+  const isMobile = useMediaQuery('(max-width:600px)');
 
   return (
     <div className={classes.root}>
-      <Typography className={classes.title}>
+      <Typography className={isMobile ? classes.mobileTitle : classes.title}>
         {title}
       </Typography>
       <div className={classes.line} />

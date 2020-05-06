@@ -19,9 +19,9 @@ const useStyles = makeStyles(() => ({
     marginRight: '10%',
   },
   dividerRow: {
-    height: '30%',
     display: 'flex',
     flexDirection: 'column',
+    marginBottom: '1em',
   },
   divider: {
     height: 1,
@@ -42,7 +42,6 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    height: '50%',
   },
   imageArea: {
     width: '50%',
