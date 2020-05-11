@@ -12,7 +12,7 @@ import RealtorComLogo from '../../assets/realtorcom_logo.png';
 import BaseLogo from '../../assets/base.jpg';
 import HalloweenGameImage from '../../assets/halloween_game.png';
 import GomokuImage from '../../assets/gomoku_screenshot.png';
-import GratefulEstate from '../../assets/grateful_estate.jpg';
+import GratefulEstate from '../../assets/grateful_logo.png';
 
 const HomePage = () => {
   const classes = useStyles();
