@@ -52,12 +52,12 @@ const useStyles = makeStyles(() => ({
   image: {
     objectFit: 'cover',
     width: '100%',
-    height: '250px',
+    height: '100%',
   },
   mobileImage: {
     objectFit: 'cover',
     width: '100%',
-    height: '125px',
+    height: '100%',
   },
   name: {
     fontWeight: 'bold',
