@@ -55,7 +55,7 @@ const useStyles = makeStyles(() => ({
     height: '100%',
   },
   mobileImage: {
-    objectFit: 'cover',
+    objectFit: 'scale-down',
     width: '100%',
     height: '100%',
   },
