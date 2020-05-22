@@ -71,19 +71,11 @@ const HomePage = () => {
       />
       <Section title="Projects" />
       <ProjectItem
-        name="Google Halloween Game"
-        link="https://www.realtor.com"
-        sectionName="01"
-        position="Personal Project - Game Development"
-        description="Realtor.com is a real estate listings website operated by the News Corporation subsidiary Move, Inc."
-        image={HalloweenGameImage}
-      />
-      <ProjectItem
         name="Gomoku"
         link="https://web.base.town"
         sectionName="02"
         position="Personal Project - Game Development"
-        description="Realtor.com is a real estate listings website operated by the News Corporation subsidiary Move, Inc."
+        description="Gomoku, also called Five in a Row, is an abstract strategy board game. It is traditionally played with Go pieces on a Go board. Implemented it in C++ with SFML, a wrapper library for OpenGL"
         image={GomokuImage}
       />
       <ProjectItem
@@ -91,8 +83,16 @@ const HomePage = () => {
         link="https://www.gratefulestate.com"
         sectionName="03"
         position="Company Project - Android App Development"
-        description="Realtor.com is a real estate listings website operated by the News Corporation subsidiary Move, Inc."
+        description="Grateful Estate is a subscription-based service that helps you or your loved ones manage their end of life affairs. The service helps users connect with their loved ones and develop a Gratitude Register to keep what they are grateful for in mind."
         image={GratefulEstate}
+      />
+      <ProjectItem
+        name="Google Halloween Game"
+        link="https://www.realtor.com"
+        sectionName="01"
+        position="Personal Project - Game Development"
+        description="Realtor.com is a real estate listings website operated by the News Corporation subsidiary Move, Inc."
+        image={HalloweenGameImage}
       />
     </div>
   );
