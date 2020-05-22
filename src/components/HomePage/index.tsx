@@ -14,6 +14,9 @@ import HalloweenGameImage from '../../assets/halloween_game.png';
 import GomokuImage from '../../assets/gomoku_screenshot.png';
 import GratefulEstate from '../../assets/grateful_logo.png';
 
+// import HackerIllustration from '../../assets/undraw_hacker_mind_6y85.svg';
+import WebDeveloperIllustration from '../../assets/web_developer_illustration.svg';
+
 const HomePage = () => {
   const classes = useStyles();
   const isNotMobile = useMediaQuery('(min-width:600px)');
@@ -45,12 +48,11 @@ const HomePage = () => {
               <Button>Email</Button>
               <Button>LinkedIn</Button>
               <Button>GitHub</Button>
-              <Button component={Link} to="/archives">
-                Archives
-              </Button>
             </div>
           )}
         </div>
+        <img className={classes.introImage} src={WebDeveloperIllustration} alt="" />
+
       </div>
       <Section title="Work Experience" />
       <ProjectItem

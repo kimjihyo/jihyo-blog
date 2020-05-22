@@ -3,6 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(() => ({
   root: {
   },
+  introImage: {
+    objectFit: 'scale-down',
+    width: '30%',
+    marginRight: '10%',
+  },
   introContainer: {
     display: 'flex',
     flexDirection: 'row',
@@ -12,7 +17,7 @@ const useStyles = makeStyles(() => ({
     paddingBottom: '5em',
   },
   introText: {
-    maxWidth: '40em',
+    width: '80%',
     padding: '.5em',
   },
   introButtons: {
