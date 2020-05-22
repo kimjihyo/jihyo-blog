@@ -18,6 +18,9 @@ const useStyles = makeStyles(() => ({
   introButtons: {
     marginTop: '1em',
   },
+  projectSection: {
+    marginTop: '5em',
+  },
 }));
 
 export default useStyles;

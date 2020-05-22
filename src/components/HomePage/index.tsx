@@ -58,7 +58,7 @@ const HomePage = () => {
         link="https://www.realtor.com"
         sectionName="01"
         position="Co-op Software Engineer"
-        description="Realtor.com is a real estate listings website operated by the News Corporation subsidiary Move, Inc."
+        description="Realtor.com is a real estate listings website operated by the News Corporation subsidiary Move, Inc. Worked as a Co-op Software Enginner in Mobile Department."
         image={RealtorComLogo}
       />
       <ProjectItem
@@ -69,11 +69,13 @@ const HomePage = () => {
         description="Base BC Students Network is an app for students to build their official ntworking/portfolio base by chatting and collaborating with classmates and students from different schools"
         image={BaseLogo}
       />
-      <Section title="Projects" />
+      <div className={classes.projectSection}>
+        <Section title="Projects" />
+      </div>
       <ProjectItem
         name="Gomoku"
         link="https://web.base.town"
-        sectionName="02"
+        sectionName="01"
         position="Personal Project - Game Development"
         description="Gomoku, also called Five in a Row, is an abstract strategy board game. It is traditionally played with Go pieces on a Go board. Implemented it in C++ with SFML, a wrapper library for OpenGL"
         image={GomokuImage}
@@ -81,7 +83,7 @@ const HomePage = () => {
       <ProjectItem
         name="Grateful Estate"
         link="https://www.gratefulestate.com"
-        sectionName="03"
+        sectionName="02"
         position="Company Project - Android App Development"
         description="Grateful Estate is a subscription-based service that helps you or your loved ones manage their end of life affairs. The service helps users connect with their loved ones and develop a Gratitude Register to keep what they are grateful for in mind."
         image={GratefulEstate}
@@ -89,7 +91,7 @@ const HomePage = () => {
       <ProjectItem
         name="Google Halloween Game"
         link="https://www.realtor.com"
-        sectionName="01"
+        sectionName="03"
         position="Personal Project - Game Development"
         description="Realtor.com is a real estate listings website operated by the News Corporation subsidiary Move, Inc."
         image={HalloweenGameImage}

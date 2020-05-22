@@ -5,7 +5,6 @@ const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
     padding: '1.5em 1em',
-    height: '18em',
     width: '90%',
     margin: '0 auto',
   },
@@ -15,7 +14,7 @@ const useStyles = makeStyles(() => ({
     width: '100%',
   },
   firstColumn: {
-    width: '40%',
+    width: '45%',
     marginRight: '10%',
   },
   dividerRow: {
@@ -44,7 +43,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
   },
   imageArea: {
-    width: '50%',
+    width: '45%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
