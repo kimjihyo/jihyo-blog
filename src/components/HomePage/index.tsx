@@ -66,7 +66,7 @@ const HomePage = () => {
         link="https://web.base.town"
         sectionName="02"
         position="Full-stack Developer"
-        description="Realtor.com is a real estate listings website operated by the News Corporation subsidiary Move, Inc."
+        description="Base BC Students Network is an app for students to build their official ntworking/portfolio base by chatting and collaborating with classmates and students from different schools"
         image={BaseLogo}
       />
       <Section title="Projects" />
