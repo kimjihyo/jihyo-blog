@@ -7,6 +7,7 @@ const useStyles = makeStyles(() => ({
     padding: '1.5em 1em',
     width: '90%',
     margin: '0 auto',
+    marginBottom: '2em',
   },
   line: {
     height: 3,

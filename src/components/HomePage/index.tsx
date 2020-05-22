@@ -14,7 +14,7 @@ import HalloweenGameImage from '../../assets/halloween_game.png';
 import GomokuImage from '../../assets/gomoku_screenshot.png';
 import GratefulEstate from '../../assets/grateful_logo.png';
 
-// import HackerIllustration from '../../assets/undraw_hacker_mind_6y85.svg';
+import HackerIllustration from '../../assets/undraw_hacker_mind_6y85.svg';
 import WebDeveloperIllustration from '../../assets/web_developer_illustration.svg';
 
 const HomePage = () => {
@@ -90,6 +90,7 @@ const HomePage = () => {
         description="Grateful Estate is a subscription-based service that helps you or your loved ones manage their end of life affairs. The service helps users connect with their loved ones and develop a Gratitude Register to keep what they are grateful for in mind."
         image={GratefulEstate}
       />
+      <div className={classes.spacingBlock} />
       <ProjectItem
         name="Google Halloween Game"
         link="https://www.realtor.com"

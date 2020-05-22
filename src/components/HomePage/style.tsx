@@ -26,6 +26,10 @@ const useStyles = makeStyles(() => ({
   projectSection: {
     marginTop: '5em',
   },
+  spacingBlock: {
+    width: '100%',
+    height: '5em',
+  },
 }));
 
 export default useStyles;
