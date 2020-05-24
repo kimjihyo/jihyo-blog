@@ -48,6 +48,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    paddingTop: '3em',
   },
   image: {
     objectFit: 'scale-down',
